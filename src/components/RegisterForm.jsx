@@ -10,14 +10,14 @@ export default function RegisterForm({ setToken }) {
     e.preventDefault();
     getAllPosts();
 
-    // try {
-    //   const result = await registerUser(username, password);
-    //   setToken(result.data.token);
-    //   setUsername("");
-    //   setPassword("");
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    try {
+      const result = await registerUser(username, password);
+      localStorage.setItem("token", result.data.token);
+      setUsername("");
+      setPassword("");
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (

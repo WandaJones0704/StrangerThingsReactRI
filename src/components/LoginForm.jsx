@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { registerUser } from "../api/users";
+import { loginUser } from "../api/users";
 
 export default function LoginForm({ setToken }) {
   const [username, setUsername] = useState("");
@@ -10,7 +10,7 @@ export default function LoginForm({ setToken }) {
 
     try {
       const result = await loginUser(username, password);
-      setToken(result.data.token);
+      localStorage.setItem("token", result.data.token);
       setUsername("");
       setPassword("");
     } catch (err) {
