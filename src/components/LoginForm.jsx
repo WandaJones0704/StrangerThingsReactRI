@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { registerUser } from "../api/users";
 
-export default function RegisterForm({ setToken }) {
+export default function LoginForm({ setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -9,7 +9,7 @@ export default function RegisterForm({ setToken }) {
     e.preventDefault();
 
     try {
-      const result = await registerUser(username, password);
+      const result = await loginUser(username, password);
       setToken(result.data.token);
       setUsername("");
       setPassword("");
@@ -37,7 +37,7 @@ export default function RegisterForm({ setToken }) {
             setPassword(e.target.value);
           }}
         />
-        <button>Register</button>
+        <button>Login</button>
       </form>
     </div>
   );
