@@ -1,0 +1,16 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  background-color: #191919;
+  padding: 10px 20px 10px 20px;
+}
+
+.nav-image {
+  height: 50px;
+  width: 50px;
+}
