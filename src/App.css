@@ -11,8 +11,10 @@ nav {
 }
 
 .nav-image {
-  height: 50px;
-  width: 50px;
+  margin: -10px;
+  margin-right: 0px;
+  height: 65px;
+  width: 65px;
 }
 
 .post-card {
