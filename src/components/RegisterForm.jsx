@@ -1,6 +1,5 @@
 import React, { Component, useState } from "react";
 import { registerUser } from "../api/users";
-import { getAllPosts } from "../api/posts";
 
 export default function RegisterForm({ setToken }) {
   const [username, setUsername] = useState("");
@@ -8,7 +7,6 @@ export default function RegisterForm({ setToken }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    getAllPosts();
 
     try {
       const result = await registerUser(username, password);
