@@ -1,19 +1,22 @@
 import React, { Component, useState } from "react";
-import { loginUser } from "../api/users";
+import { loginUser } from "../../api/users";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
-export default function LoginForm({ setToken }) {
+export default function LoginForm() {
   const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorText, setErrorText] = useState("");
+
+  const { setToken } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       const result = await loginUser(username, password);
-      if ((result.error && !result.data) || !result.success)
-        return setErrorText(result.error.message);
+      if ((result.error && !result.data) || !result.success) return setErrorText(result.error.message);
       else {
         setToken(result.data.token);
         setErrorText(result.data.message);
@@ -21,7 +24,6 @@ export default function LoginForm({ setToken }) {
           navigate("/");
         }, 3 * 1000);
       }
-      // localStorage.setItem("token", result.data.token);
     } catch (err) {
       console.error(err);
     }

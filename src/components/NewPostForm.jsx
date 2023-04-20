@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { addPost } from "../api/posts";
+import useAuth from "../hooks/useAuth";
 
-export default function NewPostForm({ token }) {
+export default function NewPostForm() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
 
+  const { token } = useAuth();
+
   async function handleSubmit(e) {
     e.preventDefault();
     const result = await addPost(token, title, price, description, willDeliver);
-    console.log;
+    console.log(result);
   }
   return (
     <div>

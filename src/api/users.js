@@ -52,7 +52,7 @@ export async function getUser(token) {
       },
     });
     const result = await response.json();
-    console.log(result);
+    return result;
   } catch (err) {
     console.error(err);
   }
