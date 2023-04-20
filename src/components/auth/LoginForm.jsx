@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import { loginUser } from "../../api/users";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 export default function LoginForm() {
@@ -10,7 +10,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [errorText, setErrorText] = useState("");
 
-  const { setToken } = useAuth();
+  const { token, setToken } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -31,6 +31,7 @@ export default function LoginForm() {
 
   return (
     <div>
+      <h4>{errorText}</h4>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -50,7 +51,9 @@ export default function LoginForm() {
         />
         <button>Login</button>
       </form>
-      <h4>{errorText}</h4>
+      <Link to="/register">
+        <p>Don't have an account? Register</p>
+      </Link>
     </div>
   );
 }

@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { addPost } from "../api/posts";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function NewPostForm() {
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
 
   const { token } = useAuth();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, [token]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -27,19 +36,19 @@ export default function NewPostForm() {
           }}
         />
         <input
-          type="number"
-          name="price"
-          placeholder="Price"
-          onChange={(e) => {
-            setPrice(e.target.value);
-          }}
-        />
-        <input
           type="text"
           name="description"
           placeholder="Description"
           onChange={(e) => {
             setDescription(e.target.value);
+          }}
+        />
+        <input
+          type="number"
+          name="price"
+          placeholder="Price"
+          onChange={(e) => {
+            setPrice(e.target.value);
           }}
         />
         <input
@@ -49,7 +58,7 @@ export default function NewPostForm() {
             setWillDeliver(e.target.checked);
           }}
         />
-        <label for="willDeliver"> Will deliver to you?</label>
+        <label htmlFor="willDeliver"> Will deliver to you?</label>
         <button type="submit">Create Post</button>
       </form>
     </div>

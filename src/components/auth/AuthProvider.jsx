@@ -10,12 +10,16 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   // User related data (username, etc)
   const [user, setUser] = useState({});
+  // If the users token is set and authenticated
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Get user data everytime token is updated
   useEffect(() => {
     async function getMe() {
+      localStorage.setItem("token", token);
       const response = await getUser(token);
       setUser(response.data);
+      setIsLoggedIn(true);
     }
     if (token) getMe();
   }, [token]);
@@ -26,6 +30,8 @@ const AuthProvider = ({ children }) => {
     setToken,
     user,
     setUser,
+    isLoggedIn,
+    setIsLoggedIn,
   };
   // Passing child components into wrapper
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;

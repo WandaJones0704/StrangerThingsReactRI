@@ -6,13 +6,14 @@ import useAuth from "../hooks/useAuth";
 export default function Logout() {
   const navigate = useNavigate();
 
-  const { setToken, setUser } = useAuth();
-  setToken(null);
-  setUser(null);
-  localStorage.clear();
+  const { setToken, setUser, setIsLoggedIn } = useAuth();
 
   useEffect(() => {
     async function redirect() {
+      setToken("");
+      setUser({});
+      setIsLoggedIn(false);
+      localStorage.clear();
       setTimeout(() => {
         navigate("/");
       }, 2 * 1000); // 2 seconds

@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import { registerUser } from "../../api/users";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 export default function RegisterForm() {
@@ -46,6 +46,9 @@ export default function RegisterForm() {
         />
         <button type="submit">Register</button>
       </form>
+      <Link to="/login">
+        <p>Already have an account? Login</p>
+      </Link>
     </div>
   );
 }

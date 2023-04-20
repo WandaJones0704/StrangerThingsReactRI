@@ -11,6 +11,8 @@ import useAuth from "./hooks/useAuth";
 function App() {
   const { token, user } = useAuth();
 
+  console.log(token);
+
   return (
     <div className="App">
       <NavBar />
