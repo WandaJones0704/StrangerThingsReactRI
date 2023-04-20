@@ -14,6 +14,7 @@ export default function Logout() {
       setUser({});
       setIsLoggedIn(false);
       localStorage.clear();
+
       setTimeout(() => {
         navigate("/");
       }, 2 * 1000); // 2 seconds

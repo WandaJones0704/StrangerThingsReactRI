@@ -22,7 +22,7 @@ export default function NewPostForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     const result = await addPost(token, title, price, description, willDeliver);
-    console.log(result);
+    navigate("/");
   }
   return (
     <div>

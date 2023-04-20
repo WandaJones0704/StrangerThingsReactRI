@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import useAuth from "../hooks/useAuth";
 
-export default function NavBarButton() {
+export default function NavButton() {
   const navigate = useNavigate();
 
   const { isLoggedIn } = useAuth();
@@ -12,7 +12,7 @@ export default function NavBarButton() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      setButtonText("Logout");
+      setButtonText("Account");
     } else {
       setButtonText("Register");
     }
@@ -20,7 +20,7 @@ export default function NavBarButton() {
 
   async function handleButton() {
     if (isLoggedIn) {
-      navigate("/logout");
+      navigate("/account");
     } else {
       navigate("/register");
     }

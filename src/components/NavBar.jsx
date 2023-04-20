@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import "../App.css";
-import NavBarButton from "./NavBarButton";
+import NavButton from "./NavButton";
 
 export default function NavBar() {
   return (
@@ -9,7 +9,7 @@ export default function NavBar() {
       <Link to="/">
         <img src="../../logo.jpg" alt="" className="nav-image" />
       </Link>
-      <NavBarButton />
+      <NavButton />
     </nav>
   );
 }
