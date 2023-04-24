@@ -14,7 +14,7 @@ export default function NavButton() {
     if (isLoggedIn) {
       setButtonText("Account");
     } else {
-      setButtonText("Register");
+      setButtonText("Login");
     }
   }, [isLoggedIn]);
 
@@ -22,7 +22,7 @@ export default function NavButton() {
     if (isLoggedIn) {
       navigate("/account");
     } else {
-      navigate("/register");
+      navigate("/login");
     }
   }
 

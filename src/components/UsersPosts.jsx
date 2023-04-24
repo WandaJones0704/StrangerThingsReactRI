@@ -30,12 +30,21 @@ export default function UsersPosts() {
       <div className="post-card" key={post._id}>
         <h2>{post.title}</h2>
         <a
-          onClick={async (e) => {
+          onClick={(e) => {
             deletePost(token, post._id);
           }}
         >
           Delete
         </a>
+        <hr />
+        <h4>Replies:</h4>
+        {post.messages.map((message) => {
+          return (
+            <p key={message._id}>
+              {message.fromUser.username}: {message.content}
+            </p>
+          );
+        })}
       </div>
     );
   });

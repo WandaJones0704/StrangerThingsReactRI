@@ -10,7 +10,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [errorText, setErrorText] = useState("");
 
-  const { token, setToken } = useAuth();
+  const { token, setToken, isLoggedIn, setIsLoggedIn } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -19,10 +19,10 @@ export default function LoginForm() {
       if ((result.error && !result.data) || !result.success) return setErrorText(result.error.message);
       else {
         setToken(result.data.token);
-        setErrorText(result.data.message);
-        setTimeout(() => {
-          navigate("/");
-        }, 3 * 1000);
+        setIsLoggedIn(true);
+        setUsername("");
+        setPassword("");
+        navigate("/account");
       }
     } catch (err) {
       console.error(err);

@@ -7,6 +7,7 @@ import Logout from "./components/Logout";
 import NewPostForm from "./components/NewPostForm";
 import HomePage from "./components/HomePage";
 import AccountPage from "./components/AccountPage";
+import MessageReplies from "./components/MessageReplies";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/newpost" element={<NewPostForm />} />
         <Route path="/account" element={<AccountPage />} />
+        <Route path="/:postId" element={<MessageReplies />} />
       </Routes>
     </div>
   );

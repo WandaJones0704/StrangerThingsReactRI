@@ -11,21 +11,21 @@ export default function NewPostForm() {
   const [description, setDescription] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
 
-  const { token } = useAuth();
+  const { token, isLoggedIn } = useAuth();
 
   useEffect(() => {
-    if (!token) {
-      navigate("/");
+    if (!isLoggedIn) {
+      navigate("/login");
     }
-  }, [token]);
+  }, [isLoggedIn]);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const result = await addPost(token, title, price, description, willDeliver);
+    const result = await addPost(token, title, description, price, willDeliver);
     navigate("/");
   }
   return (
-    <div>
+    <div className="main-div">
       <form onSubmit={handleSubmit}>
         <input
           type="text"

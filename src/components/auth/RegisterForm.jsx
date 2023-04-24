@@ -9,7 +9,7 @@ export default function RegisterForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { setToken } = useAuth();
+  const { token, setToken, isLoggedIn, setIsLoggedIn } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -17,9 +17,10 @@ export default function RegisterForm() {
     try {
       const result = await registerUser(username, password);
       setToken(result.data.token);
+      setIsLoggedIn(true);
       setUsername("");
       setPassword("");
-      navigate("/");
+      navigate("/account");
     } catch (err) {
       console.error(err);
     }

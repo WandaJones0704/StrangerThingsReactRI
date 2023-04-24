@@ -23,7 +23,7 @@ export default function Logout() {
   }, []);
 
   return (
-    <div>
+    <div className="main-div">
       <h1>User successfully logged out!</h1>
     </div>
   );
