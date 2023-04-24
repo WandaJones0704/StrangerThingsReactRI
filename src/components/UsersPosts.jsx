@@ -7,7 +7,7 @@ import { deletePost, getAllPosts } from "../api/posts";
 export default function UsersPosts() {
   const [posts, setPosts] = useState([]);
 
-  const { token } = useAuth();
+  const { token, isLoggedIn } = useAuth();
 
   useEffect(() => {
     async function getPosts() {
@@ -23,7 +23,7 @@ export default function UsersPosts() {
       setPosts(userPosts);
     }
     getPosts();
-  }, [posts]);
+  }, [isLoggedIn]);
 
   return posts.map((post) => {
     return (
