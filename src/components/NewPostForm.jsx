@@ -51,14 +51,16 @@ export default function NewPostForm() {
             setPrice(e.target.value);
           }}
         />
-        <input
-          type="checkbox"
-          name="willDeliver"
-          onChange={(e) => {
-            setWillDeliver(e.target.checked);
-          }}
-        />
-        <label htmlFor="willDeliver"> Will deliver to you?</label>
+        <span>
+          <input
+            type="checkbox"
+            name="willDeliver"
+            onChange={(e) => {
+              setWillDeliver(e.target.checked);
+            }}
+          />
+          <label htmlFor="willDeliver"> Will deliver to you?</label>
+        </span>
         <button type="submit">Create Post</button>
       </form>
     </div>

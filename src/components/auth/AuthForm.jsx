@@ -22,7 +22,8 @@ export default function AuthForm() {
       } else {
         result = await registerUser(username, password);
       }
-      if ((result.error && !result.data) || !result.success) return setErrorText(result.error.message);
+      if ((result.error && !result.data) || !result.success)
+        return setErrorText(result.error.message);
       else {
         setToken(result.data.token);
         setIsLoggedIn(true);
@@ -36,7 +37,7 @@ export default function AuthForm() {
   }
 
   return (
-    <div>
+    <div className="main-div">
       <h4>{errorText}</h4>
       <form onSubmit={handleSubmit}>
         <input
@@ -56,16 +57,16 @@ export default function AuthForm() {
           }}
         />
         <button>Login</button>
+        {location.pathname === "/login" ? (
+          <Link to="/register">
+            <p>Don't have an account? Register</p>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <p>Already have an account? Login</p>
+          </Link>
+        )}
       </form>
-      {location.pathname === "/login" ? (
-        <Link to="/register">
-          <p>Don't have an account? Register</p>
-        </Link>
-      ) : (
-        <Link to="/login">
-          <p>Already have an account? Login</p>
-        </Link>
-      )}
     </div>
   );
 }
