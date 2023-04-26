@@ -7,16 +7,17 @@ import useAuth from "../hooks/useAuth";
 export default function AccountPage() {
   const navigate = useNavigate();
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user, token } = useAuth();
 
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/login");
     }
-  }, [isLoggedIn]);
+  }, [user]);
 
   return (
     <div className="main-div">
+      <h2>Welcome {user.username}!</h2>
       <button
         onClick={(e) => {
           navigate("/logout");

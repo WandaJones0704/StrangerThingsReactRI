@@ -1,9 +1,10 @@
 import React, { Component, useState } from "react";
 import { loginUser } from "../../api/users";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
-export default function LoginForm() {
+export default function AuthForm() {
+  const location = useLocation();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -15,7 +16,12 @@ export default function LoginForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const result = await loginUser(username, password);
+      let result = null;
+      if (location.pathname === "/login") {
+        result = await loginUser(username, password);
+      } else {
+        result = await registerUser(username, password);
+      }
       if ((result.error && !result.data) || !result.success) return setErrorText(result.error.message);
       else {
         setToken(result.data.token);
@@ -51,9 +57,15 @@ export default function LoginForm() {
         />
         <button>Login</button>
       </form>
-      <Link to="/register">
-        <p>Don't have an account? Register</p>
-      </Link>
+      {location.pathname === "/login" ? (
+        <Link to="/register">
+          <p>Don't have an account? Register</p>
+        </Link>
+      ) : (
+        <Link to="/login">
+          <p>Already have an account? Login</p>
+        </Link>
+      )}
     </div>
   );
 }
