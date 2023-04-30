@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { loginUser } from "../../api/users";
+import { loginUser, registerUser } from "../../api/users";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
@@ -20,6 +20,7 @@ export default function AuthForm() {
       if (location.pathname === "/login") {
         result = await loginUser(username, password);
       } else {
+        console.log("registering user");
         result = await registerUser(username, password);
       }
       if ((result.error && !result.data) || !result.success)
