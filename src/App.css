@@ -99,7 +99,7 @@ button:focus-visible {
 
 /********************************************************************************* OUR CSS */
 body {
-  background-color: #696161;
+  background-color: #7b8584f8;
   min-width: 100vw;
   min-height: 100vw;
 }
@@ -111,7 +111,7 @@ nav {
   top: 0;
   left: 0;
   min-width: 100vw;
-  background-color: #191919;
+  background-color: teal;
   padding: 10px 20px 10px 20px;
 }
 
